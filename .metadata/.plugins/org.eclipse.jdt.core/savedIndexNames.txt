@@ -1,0 +1,10 @@
+INDEX VERSION 1.126+C:\Users\Utilisateur\Documents\GitHub\memory_java\.metadata\.plugins\org.eclipse.jdt.core
+1017422731.index
+1755786596.index
+878463995.index
+2369942961.index
+614178074.index
+1367489902.index
+3732623361.index
+3002150514.index
+1284746259.index
