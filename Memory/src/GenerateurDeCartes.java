@@ -30,7 +30,7 @@ public abstract class GenerateurDeCartes {
 
 		public Carte genereUneCarte(){
 			Carte b;
-			b= new CarteC(true,Color.BLACK);
+			b= new CarteCouleur(true,Color.BLACK);
 			return b;
 		}
 
