@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.Component;
 
 public class PanneauDeCartes {
 
@@ -10,3 +11,4 @@ public class PanneauDeCartes {
 		layout.setVgap(10);
 		setLayout(layout);
 	}
+}

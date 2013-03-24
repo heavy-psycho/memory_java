@@ -102,17 +102,18 @@ public abstract class Carte extends JComponent{
 		}
 		
 		public Object duplique(){
-			Object a = new Object;
-			
+			CarteCouleur a = new CarteCouleur(this);
 			return a;
 		}
 	}
 	
-	public class CarteMot extends Carte{
+	/*public class CarteMot extends Carte{
 		private static final long serialVersionUID = 1L;
+		private String mot;
 
-		public CarteMot(boolean sens){
+		public CarteMot(boolean sens,String mot){
 			super(sens);
+			this.mot=mot;
 		}
 
 		public CarteMot(Carte s){
@@ -127,10 +128,20 @@ public abstract class Carte extends JComponent{
 		public void rectoIdentique(){
 
 		}
-	}
+		
+		public Object duplique(){
+			CarteMot a = new CarteMot(this);
+			return a;
+		}
+		
+		public String toString(){
+			return "CarteMot: "+this.mot;
+		}
+	}*/
 	
-	public class CarteImage extends Carte{
+	/*public class CarteImage extends Carte{
 		private static final long serialVersionUID = 1L;
+		private 
 
 		public CarteImage(boolean sens){
 			super(sens);
@@ -148,6 +159,11 @@ public abstract class Carte extends JComponent{
 		public void rectoIdentique(){
 
 		}
-	}
+		
+		public Object duplique(){
+			CarteImage a = new CarteImage(this);
+			return a;
+		}
+	}*/
 
 }

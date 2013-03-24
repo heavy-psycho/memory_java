@@ -1,12 +1,43 @@
+import java.awt.*;
 
-public class GenerateurDeCartes {
+public abstract class GenerateurDeCartes {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	private String nom;
+	
+	public String getNom(){
+		return this.nom;
+	}
+	
+	public abstract Carte genereUneCarte();
+	public abstract int nombreDeCartesDifferentes();
+	
+	public Carte[] genereCartes(int n){
+		Carte[] a = new Carte[n];
+		return a;
+		
+	}
 
+	public Carte[] generePairesDeCartesMelangees(int n){
+		Carte[] a = new Carte[n];
+		return a;
+	}
+	
+	
+	public class GenerateurDeCartesCouleur extends GenerateurDeCartes{
+		
+		
+		
+		public Carte genereUneCarte(){
+			Carte b= new CarteCouleur(true,Color.BLACK);
+			return b;
+		}
+		
+		public int nombreDeCartesDifferentes(){
+			int a=0;
+			return a;
+		}
+		
+		
 	}
 
 }
