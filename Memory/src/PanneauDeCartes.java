@@ -7,7 +7,7 @@ public class PanneauDeCartes {
 	JFrame myFrame= new JFrame();
 
 	public static void main(String[] args){
-
+		
 	}
 
 	public PanneauDeCartes(int nRangees, int nColonnes, Carte[] cartes, int delaiAffichageInitial, int delaiAffichageMauvaisePaire){
