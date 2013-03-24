@@ -2,6 +2,9 @@ import java.awt.*;
 import javax.swing.*;
 
 public abstract class Carte extends JComponent{
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	private boolean face;//true si recto false si verso
 
@@ -12,13 +15,13 @@ public abstract class Carte extends JComponent{
 	protected Carte(boolean sens){
 		this.face=sens;
 	}
-	
+
 	/**
 	 * Methode static qui melange les Cartes d'un tableau de cartes
 	 * @param cartes
 	 */
 	public static void melangeCartes(Carte[] cartes){
-		
+
 	}
 
 
@@ -62,12 +65,12 @@ public abstract class Carte extends JComponent{
 		getWidth();
 		getHeight();
 	}
-	
+
 	protected void paintComponent(Graphics g){
-		
+
 	}
-	
-	
+
+
 	public abstract Object duplique();
 	public abstract void paintRecto();
 	public abstract void rectoIdentique();
@@ -75,9 +78,9 @@ public abstract class Carte extends JComponent{
 
 
 	public class CarteCouleur extends Carte{
-		private static final long serialVersionUID = 1L;
-		private Color couleur;
 		
+		private Color couleur;
+
 		public CarteCouleur(boolean sens,Color couleur){
 			super(sens);
 			this.couleur=couleur;
@@ -96,17 +99,17 @@ public abstract class Carte extends JComponent{
 		public void rectoIdentique(){
 
 		}
-		
+
 		public String toString(){
 			return "CarteCouleur: "+this.couleur;
 		}
-		
+
 		public Object duplique(){
 			CarteCouleur a = new CarteCouleur(this);
 			return a;
 		}
 	}
-	
+
 	/*public class CarteMot extends Carte{
 		private static final long serialVersionUID = 1L;
 		private String mot;
@@ -128,17 +131,17 @@ public abstract class Carte extends JComponent{
 		public void rectoIdentique(){
 
 		}
-		
+
 		public Object duplique(){
 			CarteMot a = new CarteMot(this);
 			return a;
 		}
-		
+
 		public String toString(){
 			return "CarteMot: "+this.mot;
 		}
 	}*/
-	
+
 	/*public class CarteImage extends Carte{
 		private static final long serialVersionUID = 1L;
 		private 
@@ -159,7 +162,7 @@ public abstract class Carte extends JComponent{
 		public void rectoIdentique(){
 
 		}
-		
+
 		public Object duplique(){
 			CarteImage a = new CarteImage(this);
 			return a;
