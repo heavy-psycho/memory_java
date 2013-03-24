@@ -9,6 +9,6 @@ public class PanneauDeCartes {
 		GridLayout layout = new GridLayout(nRangees,nColonnes);
 		layout.setHgap(10);
 		layout.setVgap(10);
-		setLayout(layout);
+		//TODO setLayout(layout);
 	}
 }

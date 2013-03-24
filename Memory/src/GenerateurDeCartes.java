@@ -9,7 +9,7 @@ public abstract class GenerateurDeCartes {
 		return this.nom;
 	}
 
-	public abstract Carte genereUneCarte();
+	//public abstract Carte genereUneCarte();
 	public abstract int nombreDeCartesDifferentes();
 
 	public Carte[] genereCartes(int n){
@@ -27,12 +27,12 @@ public abstract class GenerateurDeCartes {
 	public class GenerateurDeCartesCouleur extends GenerateurDeCartes{
 
 
-
-		public Carte genereUneCarte(){
+		//TODO
+		/*public Carte genereUneCarte(){
 			Carte b;
-			b= new CarteCouleur(true,Color.BLACK);
+			//TODO b= new CarteCouleur(true,Color.BLACK);
 			return b;
-		}
+		}*/
 
 		public int nombreDeCartesDifferentes(){
 			int a=0;
