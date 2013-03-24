@@ -1,12 +1,12 @@
+import javax.swing.*;
+import java.awt.*;
 
 public class PanneauDeCartes {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	public PanneauDeCartes(int nRangees, int nColonnes, Carte[] cartes, int delaiAffichageInitial, int delaiAffichageMauvaisePaire){
 
+		GridLayout layout = new GridLayout(nRangees,nColonnes);
+		layout.setHgap(10);
+		layout.setVgap(10);
+		setLayout(layout);
 	}
-
-}

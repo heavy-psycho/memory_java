@@ -59,7 +59,8 @@ public abstract class Carte extends JComponent{
 	}
 
 	public void paintVerso(Graphics2D g){
-
+		getWidth();
+		getHeight();
 	}
 	
 	protected void paintComponent(Graphics g){
@@ -67,7 +68,7 @@ public abstract class Carte extends JComponent{
 	}
 	
 	
-
+	public abstract Object duplique();
 	public abstract void paintRecto();
 	public abstract void rectoIdentique();
 
@@ -98,6 +99,12 @@ public abstract class Carte extends JComponent{
 		
 		public String toString(){
 			return "CarteCouleur: "+this.couleur;
+		}
+		
+		public Object duplique(){
+			Object a = new Object;
+			
+			return a;
 		}
 	}
 	
