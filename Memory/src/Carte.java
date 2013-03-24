@@ -80,6 +80,10 @@ public abstract class Carte extends JComponent{
 
 	public class CarteCouleur extends Carte{
 
+		/**
+		 * 
+		 */
+		private static final long serialVersionUID = 3258550638779901058L;
 		private Color couleur;
 
 		public CarteCouleur(boolean sens,Color couleur){
