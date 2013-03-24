@@ -72,13 +72,14 @@ public abstract class Carte extends JComponent{
 
 
 	public abstract Object duplique();
-	public abstract void paintRecto();
-	public abstract void rectoIdentique();
+	public abstract void paintRecto(Graphics2D g);
+	public abstract boolean rectoIdentique(Carte s);
+	public abstract Object getCaract();
 
 
 
 	public class CarteCouleur extends Carte{
-		
+
 		private Color couleur;
 
 		public CarteCouleur(boolean sens,Color couleur){
@@ -92,12 +93,26 @@ public abstract class Carte extends JComponent{
 		}
 
 
-		public void paintRecto(){
-
+		public void paintRecto(Graphics2D g){
+			
+			
 		}
 
-		public void rectoIdentique(){
+		public Object getCaract(){
+			return this.couleur;
+		}
 
+
+		/**
+		 * Methode qui retourne la donnée caractéristique de l'élément
+		 * @param s la carte en question
+		 */
+		public boolean rectoIdentique(Carte s){
+			if(this.couleur==s.getCaract()){
+				return true;
+			}else{
+				return false;
+			}
 		}
 
 		public String toString(){
@@ -108,6 +123,8 @@ public abstract class Carte extends JComponent{
 			CarteCouleur a = new CarteCouleur(this);
 			return a;
 		}
+
+
 	}
 
 	/*public class CarteMot extends Carte{
