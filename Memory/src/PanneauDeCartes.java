@@ -18,6 +18,7 @@ public class PanneauDeCartes extends JFrame{
 		for(int i=0;i<cartes.length;i++){
 			nom="Carte"+nb;
 			Carte a = new CarteCouleur(true,Color.BLACK);
+			nb++;
 		}
 		
 		

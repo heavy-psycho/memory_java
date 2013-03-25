@@ -21,7 +21,9 @@ import java.awt.Graphics2D;
 
 
 		public void paintRecto(Graphics2D g){
-			
+			int x = 0;
+			int y = 0;
+			g.fillRect(x,y,getWidth(),getHeight());
 			
 		}
 

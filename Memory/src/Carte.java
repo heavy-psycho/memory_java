@@ -1,4 +1,5 @@
 import java.awt.*;
+
 import javax.swing.*;
 
 public abstract class Carte extends JComponent{
@@ -7,6 +8,7 @@ public abstract class Carte extends JComponent{
 	 */
 	private static final long serialVersionUID = 1L;
 	private boolean face;//true si recto false si verso
+
 
 	/**
 	 * Constructeur de Carte
@@ -21,7 +23,7 @@ public abstract class Carte extends JComponent{
 	 * @param cartes
 	 */
 	public static void melangeCartes(Carte[] cartes){
-
+			int a =cartes.length+1;
 	}
 
 
@@ -38,7 +40,7 @@ public abstract class Carte extends JComponent{
 	 * @return true si la carte est face recto
 	 */
 	public boolean estMontree(){
-		return face;
+		return this.face;
 	}
 
 	/**
@@ -46,7 +48,7 @@ public abstract class Carte extends JComponent{
 	 * @return true si la carte est face verso
 	 */
 	public boolean estCachee(){
-		return !face;
+		return !this.face;
 	}
 
 	public void montre(){
@@ -62,12 +64,16 @@ public abstract class Carte extends JComponent{
 	}
 
 	public void paintVerso(Graphics2D g){
-		getWidth();
-		getHeight();
+		int x = 0;
+		int y = 0;
+		g.fillRect(x,y,getWidth(),getHeight());
 	}
 
-	protected void paintComponent(Graphics g){
-
+	protected void paintComponent(Graphics2D g){
+			if(estCachee() == true){
+				paintVerso(g);
+			}
+			else paintRecto(g);
 	}
 
 
