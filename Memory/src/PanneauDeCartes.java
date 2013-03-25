@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,12 +15,19 @@ public class PanneauDeCartes extends JFrame{
 		Carte[] cartes = new Carte[5];
 		int nb = 0;
 		String nom;
+		Carte a1 = new CarteCouleur(false,Color.BLACK);
+		Carte a2 = new CarteCouleur(false,Color.BLUE);
+		Carte a3 = new CarteCouleur(false,Color.RED);
+		Carte a4 = new CarteCouleur(false,Color.YELLOW);
+		Carte a5 = new CarteCouleur(false,Color.WHITE);
+		cartes[0]=a1;
+		cartes[0]=a2;
+		cartes[0]=a3;
+		cartes[0]=a4;
+		cartes[0]=a5;
 		
-		for(int i=0;i<cartes.length;i++){
-			nom="Carte"+nb;
-			Carte a = new CarteCouleur(true,Color.BLACK);
-			nb++;
-		}
+		PanneauDeCartes a = new PanneauDeCartes(2,3,cartes,3,2);
+		
 		
 		
 	}
@@ -29,22 +37,35 @@ public class PanneauDeCartes extends JFrame{
 		layout.setHgap(10);
 		layout.setVgap(10);
 		myFrame.setLayout(layout);
-		JButton a = new JButton("ahaha");
 
 
 		createButton();
 
 		for(int i=0;i<cartes.length;i++){
-
+			myFrame.add(cartes[i]);
+			cartes[i].repaint();
 		}
-
-
-		layout.addLayoutComponent("ahaha",a);
-		myFrame.setVisible(true);
+		
+		
+		//layout.addLayoutComponent("ahaha");
+		
+		
 		myFrame.add(bouton);
+		myFrame.setVisible(true);
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
+	private void createCarte(Carte carte){
+		
+		class switchColorListener implements ActionListener{
+			
+			public void actionPerformed(ActionEvent event){
+				System.out.println("pffff");
+			}
+			
+		}
+	}
+	
 	private void createButton(){
 		bouton = new JButton("Test");
 
