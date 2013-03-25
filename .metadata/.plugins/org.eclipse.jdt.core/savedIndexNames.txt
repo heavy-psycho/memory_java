@@ -1,0 +1,2 @@
+INDEX VERSION 1.126+C:\Users\Utilisateur\Documents\GitHub\memory_java\.metadata\.plugins\org.eclipse.jdt.core
+622513181.index
