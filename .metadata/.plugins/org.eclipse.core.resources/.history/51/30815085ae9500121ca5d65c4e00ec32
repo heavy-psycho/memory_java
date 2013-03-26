@@ -17,7 +17,6 @@ public class JeuMemory {
 		a[6]= new CarteCouleur((CarteCouleur) a[2]);
 		a[7]= new CarteCouleur((CarteCouleur) a[3]);	
 	}
-	testest
 	
 
 }
