@@ -11,24 +11,7 @@ public class PanneauDeCartes extends JFrame{
 
 	JFrame myFrame= new JFrame();
 	JButton bouton;
-	CarteCouleur a;
-
-	private void fenetre(){
-		this.setTitle("Carte");
-		this.setSize(300, 300);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
-		//On définit le layout à utiliser sur le content pane
-		//Trois lignes sur deux colonnes
-		this.setLayout(new GridLayout(3, 2));
-		//On ajoute le bouton au content pane de la JFrame
-		this.getContentPane().add(new JButton("1"));
-		this.getContentPane().add(new JButton("2"));
-		this.getContentPane().add(new JButton("3"));
-		this.getContentPane().add(new JButton("4"));
-		this.getContentPane().add(new JButton("5"));
-		this.setVisible(true);
-	}      
+	CarteCouleur a;  
 
 	public static void main(String[] args){
 		CarteCouleur[] cartes = new CarteCouleur[5];
@@ -47,6 +30,8 @@ public class PanneauDeCartes extends JFrame{
 
 
 		PanneauDeCartes a = new PanneauDeCartes(2,3,cartes,3,2);
+		a.setVisible(true);
+		a.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
 	}
@@ -57,25 +42,13 @@ public class PanneauDeCartes extends JFrame{
 		layout.setVgap(10);
 		this.setLayout(layout);
 
-		carte[] compil= new carte[cartes.length];
-		for(int i=0;i<cartes.length;i++){
-			compil[i]=new carte(cartes[i]);
-			this.add(compil[i]);
-		}
 
 
-		this.setVisible(true);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	public class carte extends JButton{
-		private String name;
-		
-		public carte(Carte carte){
-			super("");
-			this.name="";
-		}
-		private  
+	public class cartePack extends JButton{
+
+
 	}
 
 
