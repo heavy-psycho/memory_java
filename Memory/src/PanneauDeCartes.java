@@ -46,7 +46,6 @@ public class PanneauDeCartes extends JFrame{
 
 
 		PanneauDeCartes a = new PanneauDeCartes(2,3,cartes,3,2);
-		//a.fenetre();
 
 
 	}
@@ -57,20 +56,13 @@ public class PanneauDeCartes extends JFrame{
 		layout.setVgap(10);
 		this.setLayout(layout);
 
+		carte[] compil= new carte[cartes.length];
+		for(int i=0;i<cartes.length;i++){
+			compil[i]=new carte(cartes[i]);
+			this.add(compil[i]);
+		}
 
 
-
-
-
-		/*for(int i=0;i<cartes.length;i++){
-			this.add(cartes[i]);
-		}*/
-
-
-		//layout.addLayoutComponent("ahaha");
-
-
-		this.add(bouton);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -81,6 +73,7 @@ public class PanneauDeCartes extends JFrame{
 		public carte(Carte carte){
 			super("");
 			this.name="";
+			this.repaint();
 		}
 	}
 
