@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -73,8 +74,8 @@ public class PanneauDeCartes extends JFrame{
 		public carte(Carte carte){
 			super("");
 			this.name="";
-			this.repaint();
 		}
+		private  
 	}
 
 
