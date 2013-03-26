@@ -10,72 +10,79 @@ public class PanneauDeCartes extends JFrame{
 
 	JFrame myFrame= new JFrame();
 	JButton bouton;
+	CarteCouleur a;
+
+	private void fenetre(){
+		this.setTitle("Carte");
+		this.setSize(300, 300);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocationRelativeTo(null);
+		//On définit le layout à utiliser sur le content pane
+		//Trois lignes sur deux colonnes
+		this.setLayout(new GridLayout(3, 2));
+		//On ajoute le bouton au content pane de la JFrame
+		this.getContentPane().add(new JButton("1"));
+		this.getContentPane().add(new JButton("2"));
+		this.getContentPane().add(new JButton("3"));
+		this.getContentPane().add(new JButton("4"));
+		this.getContentPane().add(new JButton("5"));
+		this.setVisible(true);
+	}      
 
 	public static void main(String[] args){
-		Carte[] cartes = new Carte[5];
+		CarteCouleur[] cartes = new CarteCouleur[5];
 		int nb = 0;
 		String nom;
-		Carte a1 = new CarteCouleur(false,Color.BLACK);
-		Carte a2 = new CarteCouleur(false,Color.BLUE);
-		Carte a3 = new CarteCouleur(false,Color.RED);
-		Carte a4 = new CarteCouleur(false,Color.YELLOW);
-		Carte a5 = new CarteCouleur(false,Color.WHITE);
+		CarteCouleur a1 = new CarteCouleur(false,Color.BLACK);
+		CarteCouleur a2 = new CarteCouleur(false,Color.BLUE);
+		CarteCouleur a3 = new CarteCouleur(false,Color.RED);
+		CarteCouleur a4 = new CarteCouleur(false,Color.YELLOW);
+		CarteCouleur a5 = new CarteCouleur(false,Color.WHITE);
 		cartes[0]=a1;
 		cartes[0]=a2;
 		cartes[0]=a3;
 		cartes[0]=a4;
 		cartes[0]=a5;
-		
+
+
 		PanneauDeCartes a = new PanneauDeCartes(2,3,cartes,3,2);
-		
-		
-		
+		//a.fenetre();
+
+
 	}
 
 	public PanneauDeCartes(int nRangees, int nColonnes, Carte[] cartes, int delaiAffichageInitial, int delaiAffichageMauvaisePaire){
 		GridLayout layout = new GridLayout(nRangees,nColonnes);
 		layout.setHgap(10);
 		layout.setVgap(10);
-		myFrame.setLayout(layout);
+		this.setLayout(layout);
 
 
-		createButton();
 
-		for(int i=0;i<cartes.length;i++){
-			myFrame.add(cartes[i]);
-			cartes[i].repaint();
-		}
-		
-		
+
+
+
+		/*for(int i=0;i<cartes.length;i++){
+			this.add(cartes[i]);
+		}*/
+
+
 		//layout.addLayoutComponent("ahaha");
-		
-		
-		myFrame.add(bouton);
-		myFrame.setVisible(true);
-		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+		this.add(bouton);
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
-	private void createCarte(Carte carte){
+	public class carte extends JButton{
+		private String name;
 		
-		class switchColorListener implements ActionListener{
-			
-			public void actionPerformed(ActionEvent event){
-				System.out.println("pffff");
-			}
-			
+		public carte(Carte carte){
+			super("");
+			this.name="";
 		}
 	}
-	
-	private void createButton(){
-		bouton = new JButton("Test");
 
-		class AddInterestListener implements ActionListener{
 
-			public void actionPerformed(ActionEvent event){
-				System.out.println("POINTLESS");
-			}
-		}
-		ActionListener listener = new AddInterestListener();
-		bouton.addActionListener(listener);
-	}
 }
