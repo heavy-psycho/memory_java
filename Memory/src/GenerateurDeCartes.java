@@ -14,12 +14,16 @@ public abstract class GenerateurDeCartes {
 
 	public Carte[] genereCartes(int n){
 		Carte[] a = new Carte[n];
+		GenerateurDeCartes b;
+		for(int i=0; i<=1; i++){
+			//b.genereUneCarte();
+			//a[i]=b;
+		}
 		return a;
-
 	}
 
 	public Carte[] generePairesDeCartesMelangees(int n){
-		Carte[] a = new Carte[n];
+		Carte[] a = new Carte[n*2];
 		return a;
 	}
 }

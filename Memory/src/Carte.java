@@ -23,7 +23,7 @@ public abstract class Carte extends JComponent{
 	 * @param cartes
 	 */
 	public static void melangeCartes(Carte[] cartes){
-			int a =cartes.length+1;
+			int a = cartes.length+1;
 	}
 
 
@@ -64,14 +64,10 @@ public abstract class Carte extends JComponent{
 	}
 
 	public void paintVerso(Graphics2D g){
-		int x = 0;
-		int y = 0;
-		g.fillRect(x,y,getWidth(),getHeight());
+		g.fillRect(0,0,getWidth(),getHeight());
 	}
 
 	protected void paintComponent(Graphics2D g){
-		g =(Graphics2D) g;
-		g.fillRect(0, 0, getWidth(), getHeight());
 			if(estCachee() == true){
 				paintVerso(g);
 			}
