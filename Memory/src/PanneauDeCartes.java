@@ -40,6 +40,8 @@ public class PanneauDeCartes extends JFrame{
 		GridLayout layout = new GridLayout(nRangees,nColonnes);
 		layout.setHgap(10);
 		layout.setVgap(10);
+		this.add(cartePack(cartes[0]));
+		
 		this.setLayout(layout);
 
 
@@ -47,7 +49,11 @@ public class PanneauDeCartes extends JFrame{
 	}
 
 	public class cartePack extends JButton{
-
+		
+		public cartePack(Carte carte){
+			super("");
+			this.add("", carte);
+		}
 
 	}
 
