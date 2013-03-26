@@ -14,8 +14,7 @@ public class PanneauDeCartes extends JFrame{
 	CarteCouleur a;
 
 	// constructeur de PanneauDeCartes
-	public PanneauDeCartes(int nRangees, int nColonnes, Carte[] cartes, 
-			int delaiAffichageInitial, int delaiAffichageMauvaisePaire){
+	public PanneauDeCartes(int nRangees, int nColonnes, Carte[] cartes,int delaiAffichageInitial, int delaiAffichageMauvaisePaire){
 		GridLayout layout = new GridLayout(nRangees,nColonnes);
 		layout.setHgap(10);
 		layout.setVgap(10);
@@ -23,8 +22,8 @@ public class PanneauDeCartes extends JFrame{
 		this.setTitle("GRILLES");
 		this.setSize(300, 300);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	    this.setLocationRelativeTo(null);
-	    
+		this.setLocationRelativeTo(null);
+
 		carte[] compil= new carte[cartes.length];
 		for(int i=0;i<cartes.length;i++){
 			compil[i]=new carte(cartes[i]);
@@ -41,11 +40,15 @@ public class PanneauDeCartes extends JFrame{
 
 	public class carte extends JButton{
 		private String name;
+		private Color caract;
 
 		public carte(Carte carte){
 			super("");
 			this.name="";
+			this.caract=(Color) carte.getCaract();
+			this.setBackground(caract);
 		}
+		
 	}
 
 
