@@ -1,8 +1,9 @@
 import java.awt.*;
+import java.awt.event.MouseListener;
 import java.util.Random;
 import javax.swing.*;
 
-public abstract class Carte extends JComponent{
+public abstract class Carte extends JComponent implements MouseListener{
 	/**
 	 * 
 	 */
@@ -16,6 +17,7 @@ public abstract class Carte extends JComponent{
 	 */
 	protected Carte(boolean sens){
 		this.face=sens;
+
 	}
 
 	/**

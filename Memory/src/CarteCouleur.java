@@ -13,10 +13,12 @@ import java.awt.event.MouseEvent;
 		public CarteCouleur(boolean sens,Color couleur){
 			super(sens);
 			this.couleur=couleur;
+			addMouseListener(this);
 		}
 
 		public CarteCouleur(CarteCouleur s){
-			super(s);
+			super(s.estMontree());
+			addMouseListener(this);
 			this.couleur=s.couleur;
 		}
 
@@ -55,25 +57,31 @@ import java.awt.event.MouseEvent;
 			return a;
 		}
 		
+		@Override
 		public void mouseClicked(MouseEvent event) {
 			this.retourne();
+			this.repaint();
 		}
 
+		@Override
 		public void mouseEntered(MouseEvent e) {
-			this.repaint();
+			//this.repaint();
 			
 		}
 
+		@Override
 		public void mouseExited(MouseEvent e) {
 			// TODO Auto-generated method stub
 			
 		}
 
+		@Override
 		public void mousePressed(MouseEvent e) {
 			// TODO Auto-generated method stub
-			this.retourne();
+			//this.retourne();
 		}
 
+		@Override
 		public void mouseReleased(MouseEvent e) {
 			// TODO Auto-generated method stub
 			

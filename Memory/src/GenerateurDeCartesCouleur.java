@@ -10,7 +10,7 @@ public class GenerateurDeCartesCouleur extends GenerateurDeCartes{
 	
 	public Carte genereUneCarte(){
 		int indice =(int) (Math.random()*(couleur.length-1));
-		Carte a = new CarteCouleur(false,couleur[indice]);//METTRE A FALSE !!!!! //TODO
+		Carte a = new CarteCouleur(true,couleur[indice]);//METTRE A FALSE !!!!! //TODO
 		return a;
 	}
 }
