@@ -1,16 +1,18 @@
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Graphics;
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import javax.swing.JButton;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-public class PanneauDeCartes extends JFrame{
+public class PanneauDeCartes extends JPanel{
 
+
+	private static final long serialVersionUID = 5191665466430373194L;
+	
 	JFrame myFrame= new JFrame();
-	JButton bouton;
 	CarteCouleur a;
 
 	// constructeur de PanneauDeCartes
@@ -18,38 +20,58 @@ public class PanneauDeCartes extends JFrame{
 		GridLayout layout = new GridLayout(nRangees,nColonnes);
 		layout.setHgap(10);
 		layout.setVgap(10);
-		this.setLayout(layout);
-		this.setTitle("GRILLES");
-		this.setSize(300, 300);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocationRelativeTo(null);
+		myFrame.setLayout(layout);
+		myFrame.setTitle("OMG OMG");
+		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+		int width = gd.getDisplayMode().getWidth();
+		int height = gd.getDisplayMode().getHeight();
+		myFrame.setSize(width,height);
+		
+		//this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		//this.setLocationRelativeTo(null);
 
-		carte[] compil= new carte[cartes.length];
+		//CarteCouleur[] compil= new CarteCouleur[cartes.length];
+		
 		for(int i=0;i<cartes.length;i++){
-			compil[i]=new carte(cartes[i]);
-			this.add(compil[i]);
+			myFrame.add(cartes[i]);
 		}
 
-
-
-		this.setVisible(true);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		myFrame.setVisible(true);
+		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
+	public class carteListener implements MouseListener{
 
+		@Override
+		public void mouseClicked(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
 
+		@Override
+		public void mouseEntered(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
 
-	public class carte extends JButton{
-		private String name;
-		private Color caract;
+		@Override
+		public void mouseExited(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
 
-		public carte(Carte carte){
-			super("");
-			this.name="";
-			this.caract=(Color) carte.getCaract();
-			this.setBackground(caract);
+		@Override
+		public void mousePressed(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
+		}
+
+		@Override
+		public void mouseReleased(MouseEvent e) {
+			// TODO Auto-generated method stub
+			
 		}
 		
 	}
-
-
 }

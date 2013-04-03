@@ -1,5 +1,3 @@
-import java.awt.*;
-
 
 public abstract class GenerateurDeCartes {
 
@@ -12,18 +10,23 @@ public abstract class GenerateurDeCartes {
 	public abstract Carte genereUneCarte();
 	public abstract int nombreDeCartesDifferentes();
 
+	
 	public Carte[] genereCartes(int n){
 		Carte[] a = new Carte[n];
-		GenerateurDeCartes b;
-		for(int i=0; i<=1; i++){
-			//b.genereUneCarte();
-			//a[i]=b;
+		for(int i=0; i<n; i++){
+			a[i]= genereUneCarte();
 		}
 		return a;
 	}
 
 	public Carte[] generePairesDeCartesMelangees(int n){
-		Carte[] a = new Carte[n*2];
-		return a;
+		Carte[] cartes = new Carte[2*n];
+		for(int i=0; i<n; i++){
+			cartes[i]= genereUneCarte();
+			Carte temp=(Carte) cartes[i].duplique();
+			cartes[n+i] = temp;
+		}
+		Carte.melangeCartes(cartes);
+		return cartes;
 	}
 }
