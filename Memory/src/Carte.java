@@ -68,10 +68,12 @@ public abstract class Carte extends JComponent{
 
 	public void montre(){
 		this.face=true;
+		this.repaint();
 	}
 
 	public void cache(){
 		this.face=false;
+		this.repaint();
 	}
 
 	public void retourne(){
@@ -80,16 +82,15 @@ public abstract class Carte extends JComponent{
 	}
 
 	public void paintVerso(Graphics2D g){
-		g.fillRect(0,0,getWidth(),getHeight());
+		g.fillRect(0,0,getWidth(),getWidth());
 	}
 
 	protected void paintComponent(Graphics2D g){
-		Graphics2D g2d = (Graphics2D)g;
 		super.paintComponent(g);
 		if(this.estCachee() == true){
-			this.paintVerso((Graphics2D) g);
+			this.paintVerso(g);
 		}else{
-			this.paintRecto((Graphics2D) g);
+			this.paintRecto(g);
 		}
 
 

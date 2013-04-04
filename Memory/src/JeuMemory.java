@@ -7,6 +7,6 @@ public class JeuMemory {
 		Carte[] a = new CarteCouleur[8];
 		GenerateurDeCartesCouleur gen = new GenerateurDeCartesCouleur();
 		a=gen.generePairesDeCartesMelangees(4);
-		PanneauDeCartes b = new PanneauDeCartes(2,2,a,5,5);
+		PanneauDeCartes b = new PanneauDeCartes(4,4,a,1,1);
 	}
 }

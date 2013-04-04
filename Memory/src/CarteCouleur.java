@@ -49,6 +49,14 @@ import java.awt.event.MouseEvent;
 		public String toString(){
 			return "CarteCouleur: "+this.couleur;
 		}
+		
+		public boolean equals(Object obj){
+			if(this.couleur==((CarteCouleur) obj).getCaract()){
+				return true;
+			}else{
+				return false;
+			}
+		}
 
 		public Object duplique(){
 			CarteCouleur a = new CarteCouleur(this);
