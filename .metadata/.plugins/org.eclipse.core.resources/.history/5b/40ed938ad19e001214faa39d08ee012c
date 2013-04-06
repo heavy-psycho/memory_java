@@ -13,7 +13,7 @@ public class GenerateurDeCartesCouleur extends GenerateurDeCartes{
 		int indice =(int) (Math.random()*(couleur.length-1));	
 		Carte a = new CarteCouleur(true,couleur[indice]);//METTRE A FALSE !!!!! //TODO
 		Color[] b = new Color[couleur.length-1];
-		if(b.length == 0){ //si il n'y a plus de couleur non utilisée, on remet toutes les couleurs possibles, nous aurons donc des couleurs en double.
+		if(b.length == 0){
 			b = new Color[couleurf.length];
 			couleur = new Color[couleurf.length];
 			for(int k=0; k<b.length ;k++){
@@ -21,20 +21,20 @@ public class GenerateurDeCartesCouleur extends GenerateurDeCartes{
 				couleur[k]=couleurf[k];
 			}
 		}
-		else{ // si il reste encore au moins une couleur non utilisée, on enlève la couleur utilisée précédemment
-			for(int i=0; i<b.length ;i++){
-				if(i>=indice){
-					b[i]=couleur[i+1];
-				}
-				else { b[i]=couleur[i];
-				}
+		else{
+		for(int i=0; i<b.length ;i++){
+			if(i>=indice){
+				b[i]=couleur[i+1];
 			}
-			couleur = new Color[b.length];
-			for(int j=0; j<b.length ;j++){	
-				couleur[j]=b[j];
+			else { b[i]=couleur[i];
 			}
 		}
-
+		couleur = new Color[b.length];
+		for(int j=0; j<b.length ;j++){	
+			couleur[j]=b[j];
+		}
+		}
+			 
 		return a;
 	}
 }
