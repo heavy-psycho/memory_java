@@ -17,7 +17,7 @@ public class PanneauDeCartes extends JPanel implements MouseListener{
 	JFrame myFrame= new JFrame();
 	private Carte[] tabCartes;
 	private int delaiMauvaisePaire;
-	private static int nbCarteRetourne=0;
+	private int nbCarteRetourne=0;
 
 	// constructeur de PanneauDeCartes
 	public PanneauDeCartes(int nRangees, int nColonnes, Carte[] cartes,int delaiAffichageInitial, int delaiAffichageMauvaisePaire){
@@ -52,12 +52,13 @@ public class PanneauDeCartes extends JPanel implements MouseListener{
 
 
 	private int nbCarteRetourne(){
+		int nb=0;
 		for(int i=0;i<tabCartes.length;i++){
 			if(tabCartes[i].estMontree()){
-				nbCarteRetourne++;
+				nb++;
 			}
 		}
-		return nbCarteRetourne;
+		return nb;
 	}
 	private int reiniNbCarteRetourne(){
 		return nbCarteRetourne=0;
