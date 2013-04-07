@@ -1,0 +1,53 @@
+
+import java.awt.Graphics2D;
+import java.awt.event.MouseEvent;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+
+	public class CarteImage extends Carte{
+		
+		private BufferedImage img; 
+		public String b;
+		public int caract;
+
+		protected CarteImage(String c, boolean sens) {
+			super(sens);
+			b = c;
+			try {                
+		           //THIS LINE BELLOW WAS ADDED
+		           img = ImageIO.read(getClass().getResourceAsStream(c));
+		        } catch (IOException ex) {
+		             // handle exception...
+		            System.out.println(ex);
+		        }
+		}
+
+		@Override
+		public Object duplique() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public void paintRecto(Graphics2D g) {
+			int x = 0;
+			int y = 0;
+			g.setColor(this.couleur);
+			g.fillRect(x,y,getWidth(),getHeight());
+			
+		}
+
+		@Override
+		public boolean rectoIdentique(Carte s) {
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public Object getCaract() {
+			return this.caract;
+		}
+
+	}

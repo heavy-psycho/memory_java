@@ -1,0 +1,188 @@
+import java.awt.GraphicsDevice;
+import java.awt.GraphicsEnvironment;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import javax.swing.Timer;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+public class PanneauDeCartes extends JPanel implements MouseListener, ActionListener{
+
+
+	private static final long serialVersionUID = 5191665466430373194L;
+
+	JFrame myFrame= new JFrame();
+	private Carte[] tabCartes;
+	private int delaiMauvaisePaire;
+	private int nbCarteRetourne=0;
+	Timer b = new Timer(1000, this);	
+	public int[] i;
+	
+
+	// constructeur de PanneauDeCartes
+	public PanneauDeCartes(int nRangees, int nColonnes, Carte[] cartes,int delaiAffichageInitial, int delaiAffichageMauvaisePaire){
+		GridLayout layout = new GridLayout(nRangees,nColonnes);
+		layout.setHgap(10);
+		layout.setVgap(10);
+		myFrame.setLayout(layout);
+		myFrame.setTitle("yeah");
+
+
+		tabCartes=cartes;
+		
+		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+		int width = gd.getDisplayMode().getWidth();
+		int height = gd.getDisplayMode().getHeight();
+		myFrame.setSize(300,300);
+
+
+
+		for(int i=0;i<cartes.length;i++){
+			myFrame.add(cartes[i]);
+			cartes[i].addMouseListener(this);
+		}
+		
+
+
+
+		System.out.println(nbCarteRetourne());
+		myFrame.setVisible(true);
+		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+
+	private int nbCarteRetourne(){
+		for(int i=0;i<tabCartes.length;i++){
+			if(tabCartes[i].estMontree()){
+				nbCarteRetourne++;
+			}
+		}
+		return nbCarteRetourne;
+	}
+	private int reiniNbCarteRetourne(){
+
+		return nbCarteRetourne=0;
+	}
+
+	private int[] indiceCarteRetourne(){
+		i = new int[]{-1,-1};
+		for(int u=0;u<i.length;u++){
+			for(int o=0; o<tabCartes.length;o++){
+				if(tabCartes[o].estMontree()==true){
+					if(o==i[0]) continue;
+					i[u]=o;
+					break;
+				}
+			}
+			
+		}
+		return i;
+	}
+	
+	/*private boolean[] indice(){
+		
+		for(int i=0;i<tabCartes.length;i++){
+			if(tabCartes[i].estMontree()==true){
+				c[i]=true;
+			}else{c[i]=false;}
+		}
+			return c;
+	}*/
+
+
+	@Override
+	public void mouseClicked(MouseEvent e) {
+		Carte a = (Carte)e.getSource();
+		if(nbCarteRetourne()==0){
+			a.montre();
+		}
+		else if(nbCarteRetourne()==2){
+			a.montre();
+			indiceCarteRetourne();
+			System.out.println(i[0]+"   "+i[1]);
+			//b.start();
+			//reiniNbCarteRetourne();
+			if(tabCartes[i[1]].equals(tabCartes[i[0]])){
+				System.out.println("Paire trouvée !");
+				reiniNbCarteRetourne();
+			}
+			else{
+				System.out.println("Pas la bonne paire !");
+				a.montre();
+				b.start();
+				reiniNbCarteRetourne();
+			}
+			
+		}
+		else{
+			reiniNbCarteRetourne();
+		}
+
+			
+		/*a.montre();
+		if(a.equals(tabCartes[indiceCarteRetourne()])){
+			System.out.println("Paire trouvée !");
+			a.montre();
+			tabCartes[indiceCarteRetourne()].montre();
+		}else{
+			System.out.println("PAS LA BONNE PAIRE !");
+		}
+		b.start();
+		reiniNbCarteRetourne();
+
+	}else if(nbCarteRetourne()==0){
+		System.out.println("on retourne la carte. 0 retourner");
+		a.retourne();
+	}
+	else{
+		reiniNbCarteRetourne();
+		*/
+
+
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseExited(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mousePressed(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent e) {
+		// TODO Auto-generated method stub
+
+	}
+	public void actionPerformed(ActionEvent  e) {
+		for(int i=0; i<tabCartes.length; i++){
+			if(tabCartes[i].estCachee() == false){
+				tabCartes[i].cache();
+			}
+		}
+		b.stop();
+	}
+
+	
+
+	
+
+
+
+
+
+}
+
