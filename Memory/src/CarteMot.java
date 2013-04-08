@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 
 	public class CarteMot extends Carte{
@@ -22,10 +23,13 @@ import java.awt.Graphics2D;
 
 		public void paintRecto(Graphics2D g){
 			int x = 0;
-			int y = 0;
-			g.drawString(this.name,0,0);
-			g.setColor(Color.white);
-			g.fillRect(x,y,getWidth(),getHeight());
+			int y = this.getHeight()/2;
+			g.setBackground(Color.GREEN);
+			g.setFont(new Font("Serif", Font.BOLD, 24));
+			g.setColor(Color.BLACK);
+			g.drawString(this.name,x,y);
+
+
 			
 		}
 
@@ -51,11 +55,16 @@ import java.awt.Graphics2D;
 		}
 		
 		public boolean equals(Object obj){
+			try{
 			if(this.name==((CarteMot) obj).getCaract()){
 				return true;
 			}else{
-				return false;
+				
 			}
+			}catch(ClassCastException evt){
+				//nothing todo
+			}
+			return false;
 		}
 
 		public Object duplique(){

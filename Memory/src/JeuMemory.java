@@ -11,6 +11,7 @@ public class JeuMemory {
 		int nbColonnes = 0;
 		int nbArgumentsCorrect=0;
 		int theme=0;
+		Carte[] a = null;
 
 		try {
 			nbPairesDeCartes = Integer.parseInt(args[0]);
@@ -48,7 +49,7 @@ public class JeuMemory {
 			System.out.println("Veuillez rentrer un délai d'Affichage de mauvaise paire correct." );
 
 		}
-		
+
 		try{
 			try{
 				theme = Integer.parseInt(args[5]);
@@ -61,13 +62,20 @@ public class JeuMemory {
 
 		}
 		switch(theme){
-			
+		case 0:GenerateurDeCartesCouleur gen0 = new GenerateurDeCartesCouleur();
+		a=gen0.generePairesDeCartesMelangees(nbPairesDeCartes);
+		break;
+		case 1:GenerateurDeCartesMots gen1=new GenerateurDeCartesMots(0);
+		a=gen1.generePairesDeCartesMelangees(nbPairesDeCartes);
+		break;
+		case 2:GenerateurDeCartesMots gen2=new GenerateurDeCartesMots(1);
+		a=gen2.generePairesDeCartesMelangees(nbPairesDeCartes);
+		break;
 		}
 
 
 		if(nbArgumentsCorrect==6){
-			GenerateurDeCartesCouleur gen = new GenerateurDeCartesCouleur();
-			Carte[] a=gen.generePairesDeCartesMelangees(nbPairesDeCartes);
+
 			PanneauDeCartes b = new PanneauDeCartes(nbRangees,nbColonnes,a,delaiAffichageInitial,delaiAffichageMauvaisePaire);
 		}
 	}

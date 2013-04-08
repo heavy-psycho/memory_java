@@ -1,3 +1,5 @@
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
@@ -5,6 +7,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+import javax.swing.JLabel;
+import javax.swing.JTextPane;
 import javax.swing.Timer;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -23,7 +28,6 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 	public int[] i=new int[]{-1,-1};
 	public int compteur = 0;
 	private int nbCoup = 0;
-	private int test = 0;
 
 	ActionListener taskPerformer = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
@@ -44,15 +48,32 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 			}
 		}
 	};
+
+	private void victoryPanel(){
+		myFrame.setVisible(false);
+		JFrame victory=new JFrame();
+		JLabel victoire=new JLabel("Bravo ! Vous avez réussi en "+nbCoup+" coups !");
+		JPanel panel=new JPanel(new BorderLayout());
+		panel.add(victoire);
+		victory.add(panel,BorderLayout.CENTER);
+		victory.setSize(300,200);
+		victory.setTitle("Victoire !");
+		victoire.setSize(200,20);
+		victory.setVisible(true);
+
+		victory.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
 	// constructeur de PanneauDeCartes
 	public PanneauDeCartes(int nRangees, int nColonnes, Carte[] cartes,int delaiAffichageInitial, int delaiAffichageMauvaisePaire){
 		GridLayout layout = new GridLayout(nRangees,nColonnes);
 		layout.setHgap(10);
 		layout.setVgap(10);
-
+		
+		
 		JPanel MyPanel=new JPanel();
 		MyPanel.setLayout(layout);
-		myFrame.setTitle("JEUDECARTES");
+		myFrame.setTitle("Memory par JUBERT Alexandre et COSTANTINI Maël");
 
 
 		tabCartes=cartes;
@@ -61,7 +82,7 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 		int width = gd.getDisplayMode().getWidth();
 		int height = gd.getDisplayMode().getHeight();
-		myFrame.setSize(300,300);
+		myFrame.setSize(width,height);
 
 		b = new Timer(delaiAffichageMauvaisePaire, taskPerformer);
 		c = new Timer(delaiAffichageInitial, taskPerformer2);
@@ -115,6 +136,7 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		nbCarteRetourne();
+		nbCoup++;
 
 		if(nbCarteRetourne<=2){
 			Carte a = (Carte)e.getSource();
@@ -148,11 +170,12 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 				reiniTableau();
 
 			}
-			nbCoup++;
+			
 
 		}
 
 		if(compteur==tabCartes.length/2){//si le compteur est égal au nombre de paire (on a trouvé toutes les paires)
+			victoryPanel();
 			System.out.println("Vous avez trouvé les "+compteur+" paires !");
 			System.out.println("Nombre de coup total : "+nbCoup);
 			System.out.println("Vous avez gagné !");
