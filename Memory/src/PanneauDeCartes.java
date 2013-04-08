@@ -20,14 +20,16 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 	private int nbCarteRetourne=0;
 	Timer b;
 	Timer c;
-	public int[] i=new int[2];
+	public int[] i=new int[]{-1,-1};
 	public int compteur = 0;
 	private int nbCoup = 0;
+	private int test = 0;
 
 	ActionListener taskPerformer = new ActionListener() {
 		public void actionPerformed(ActionEvent evt) {
 			tabCartes[i[1]].cache();
 			tabCartes[i[0]].cache();
+			reiniNbCarteRetourne();
 			b.stop();
 		}
 	};
@@ -42,19 +44,16 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 			}
 		}
 	};
-	
 	// constructeur de PanneauDeCartes
 	public PanneauDeCartes(int nRangees, int nColonnes, Carte[] cartes,int delaiAffichageInitial, int delaiAffichageMauvaisePaire){
-		
 		GridLayout layout = new GridLayout(nRangees,nColonnes);
 		layout.setHgap(10);
 		layout.setVgap(10);
-		
+
 		JPanel MyPanel=new JPanel();
-		//myFrame.setLayout(layout);
 		MyPanel.setLayout(layout);
 		myFrame.setTitle("JEUDECARTES");
-
+		
 
 		tabCartes=cartes;
 		tabCarteNonTrouve = new Carte[tabCartes.length];
@@ -62,33 +61,26 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 		int width = gd.getDisplayMode().getWidth();
 		int height = gd.getDisplayMode().getHeight();
-		myFrame.setSize(width,height);
+		myFrame.setSize(300,300);
 
 		b = new Timer(delaiAffichageMauvaisePaire, taskPerformer);
 		c = new Timer(delaiAffichageInitial, taskPerformer2);
 
 
 		for(int i=0;i<cartes.length;i++){
-			//myFrame.add(cartes[i]);
 			MyPanel.add(cartes[i]);
 			cartes[i].addMouseListener(this);
 		}
 
 
 		myFrame.add(MyPanel);
-
 		myFrame.setVisible(true);
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 
 	private int nbCarteRetourne(){
-		for(int i=0;i<tabCartes.length;i++){
-			if(tabCartes[i].estMontree()){
-				nbCarteRetourne++;
-			}
-		}
-		return nbCarteRetourne;
+		return nbCarteRetourne++;
 	}
 	private int reiniNbCarteRetourne(){
 		return nbCarteRetourne=0;
@@ -122,11 +114,19 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
-		Carte a = (Carte)e.getSource();
-		a.montre();//Montre la carte
-		if(nbCarteRetourne()%2==0){// Si le nombre de cartes retournée est paire
+		nbCarteRetourne();
+
+		if(nbCarteRetourne<=2){
+			Carte a = (Carte)e.getSource();
+			a.montre();//Montre la carte
+		}
+		else if(nbCarteRetourne==3){
+			reiniNbCarteRetourne();
+		}
+
+		System.out.println(nbCarteRetourne);
+		if(nbCarteRetourne==2){// Si le nombre de cartes retournée est paire
 			indiceCarteRetourne();//On cherche les indices des deux dernières cartes retournées !!AFIXER!! NE MARCHE PAS
-			System.out.println(i[0]+"   "+i[1]);//test
 
 			if(tabCartes[i[1]].equals(tabCartes[i[0]])){//si les deux cartes sont pareilles
 
@@ -139,14 +139,14 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 				System.out.println("Pas la bonne paire !");//sinon, les deux cartes sont différentes
 				b.start();// on met le timer en route, voir actionPerformed
 
-				reiniNbCarteRetourne();// on réinitialise le nombre de cartes retournées
+				// on réinitialise le nombre de cartes retournées
 				reiniTableau();
+
 			}
 			nbCoup++;
+
 		}
-		else{
-			reiniNbCarteRetourne();
-		}
+
 		if(compteur==tabCartes.length/2){//si le compteur est égal au nombre de paire (on a trouvé toutes les paires)
 			System.out.println("Vous avez trouvé les "+compteur+" paires !");
 			System.out.println("Nombre de coup total : "+nbCoup);
@@ -192,4 +192,3 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 
 
 }
-
