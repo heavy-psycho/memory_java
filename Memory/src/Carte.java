@@ -85,24 +85,16 @@ public abstract class Carte extends JComponent{
 		g.fillRect(0,0,getWidth(),getWidth());
 	}
 
-	protected void paintComponent(Graphics2D g){
-		super.paint(g);
+	protected void paintComponent(Graphics g){
+		Graphics2D g2d = (Graphics2D)g; 
 		if(this.estCachee() == true){
-			this.paintVerso(g);
+			this.paintVerso(g2d);
 		}else{
-			this.paintRecto(g);
+			this.paintRecto(g2d);
 		}
 
 
 
-	}
-
-	public void paint(Graphics g){
-		if(this.estCachee() == true){
-			this.paintVerso((Graphics2D) g);
-		}else{
-			this.paintRecto((Graphics2D) g);
-		}
 	}
 
 
