@@ -57,7 +57,7 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 
 
 		for(int i=0;i<cartes.length;i++){
-			//myFrame.add(cartes[i]);
+			myFrame.add(cartes[i]);
 			hey.add(cartes[i]);
 			cartes[i].addMouseListener(this);
 		}
