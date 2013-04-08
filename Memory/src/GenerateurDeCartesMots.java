@@ -1,9 +1,10 @@
-import java.awt.Color;
-
 public class GenerateurDeCartesMots extends GenerateurDeCartes{
 	
 	private String[] emotionsf = new String[]{"Tristesse","Pitié","Défaite","Dépression","Accablement","Découragement","Négligence","Égarement","Mécontentement","Souffrance"};
 	private String[] emotions = new String[]{"Tristesse","Pitié","Défaite","Dépression","Accablement","Découragement","Négligence","Égarement","Mécontentement","Souffrance"};
+	private String[] lettres = new String[]{"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+	private String[] lettresf = new String[]{"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+	
 
 	public int nombreDeCartesDifferentes(){
 		return emotions.length;
@@ -36,5 +37,14 @@ public class GenerateurDeCartesMots extends GenerateurDeCartes{
 		}
 
 		return a;
+	}
+	public GenerateurDeCartesMots(int a){
+		if(a==1){
+			//RIEN A FAIRE
+		}else if(a==0){
+			emotions=lettres;
+			emotionsf=lettresf;
+			
+		}
 	}
 }
