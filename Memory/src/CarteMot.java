@@ -1,35 +1,36 @@
 import java.awt.Color;
 import java.awt.Graphics2D;
 
-	public class CarteCouleur extends Carte{
+	public class CarteMot extends Carte{
 
 		/**
 		 * 
 		 */
 		private static final long serialVersionUID = 3258550638779901058L;
-		private Color couleur;
+		private String name;
 
-		public CarteCouleur(boolean sens,Color couleur){
+		public CarteMot(boolean sens,String name){
 			super(sens);
-			this.couleur=couleur;
+			this.name=name;
 		}
 
-		public CarteCouleur(CarteCouleur s){
+		public CarteMot(CarteMot s){
 			super(s.estMontree());
-			this.couleur=s.couleur;
+			this.name=s.name;
 		}
 
 
 		public void paintRecto(Graphics2D g){
 			int x = 0;
 			int y = 0;
-			g.setColor(this.couleur);
+			g.drawString(this.name,0,0);
+			g.setColor(Color.white);
 			g.fillRect(x,y,getWidth(),getHeight());
 			
 		}
 
 		public Object getCaract(){
-			return this.couleur;
+			return this.name;
 		}
 
 
@@ -38,7 +39,7 @@ import java.awt.Graphics2D;
 		 * @param s la carte en question
 		 */
 		public boolean rectoIdentique(Carte s){
-			if(this.couleur==s.getCaract()){
+			if(this.name==s.getCaract()){
 				return true;
 			}else{
 				return false;
@@ -46,11 +47,11 @@ import java.awt.Graphics2D;
 		}
 
 		public String toString(){
-			return "CarteCouleur: "+this.couleur;
+			return "Cartename: "+this.name;
 		}
 		
 		public boolean equals(Object obj){
-			if(this.couleur==((CarteCouleur) obj).getCaract()){
+			if(this.name==((CarteMot) obj).getCaract()){
 				return true;
 			}else{
 				return false;
@@ -58,7 +59,7 @@ import java.awt.Graphics2D;
 		}
 
 		public Object duplique(){
-			CarteCouleur a = new CarteCouleur(this);
+			CarteMot a = new CarteMot(this);
 			return a;
 		}
 

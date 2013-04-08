@@ -53,7 +53,7 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 		JPanel MyPanel=new JPanel();
 		MyPanel.setLayout(layout);
 		myFrame.setTitle("JEUDECARTES");
-		
+
 
 		tabCartes=cartes;
 		tabCarteNonTrouve = new Carte[tabCartes.length];
@@ -118,9 +118,14 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 
 		if(nbCarteRetourne<=2){
 			Carte a = (Carte)e.getSource();
-			a.montre();//Montre la carte
+			if(!a.estMontree()){
+				a.montre();//Montre la carte
+			}
+			else{
+				nbCarteRetourne=1;
+			}
 		}
-		else if(nbCarteRetourne==3){
+		else if(nbCarteRetourne>2){
 			reiniNbCarteRetourne();
 		}
 
@@ -182,13 +187,5 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 	public void actionPerformed(ActionEvent  e) {// le timer va, après 1000ms cacher les deux dernières cartes retournées
 
 	}
-
-
-
-
-
-
-
-
 
 }
