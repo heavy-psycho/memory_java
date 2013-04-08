@@ -22,7 +22,6 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 	Timer c;
 	public int[] i=new int[2];
 	public int compteur = 0;
-	private int nbCoup = 0;
 	
 	ActionListener taskPerformer = new ActionListener() {
 	      public void actionPerformed(ActionEvent evt) {
@@ -142,14 +141,13 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 				reiniNbCarteRetourne();// on réinitialise le nombre de cartes retournées
 				reiniTableau();
 			}
-			nbCoup++;
+			
 		}
 		else{
 			reiniNbCarteRetourne();
 		}
 		if(compteur==tabCartes.length/2){//si le compteur est égal au nombre de paire (on a trouvé toutes les paires)
 			System.out.println("Vous avez trouvé les "+compteur+" paires !");
-			System.out.println("Nombre de coup total : "+nbCoup);
 			System.out.println("Vous avez gagné !");
 		}
 

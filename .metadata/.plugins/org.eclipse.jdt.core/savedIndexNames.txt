@@ -1,5 +1,4 @@
 INDEX VERSION 1.126+C:\Users\Utilisateur\Documents\GitHub\memory_java\.metadata\.plugins\org.eclipse.jdt.core
-622513181.index
 1017422731.index
 1755786596.index
 878463995.index

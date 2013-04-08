@@ -7,5 +7,6 @@
 <listEntry value="1"/>
 </listAttribute>
 <stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="JeuMemory"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="4 4 4 1000 1000"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="Memory"/>
 </launchConfiguration>
