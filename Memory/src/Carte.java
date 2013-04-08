@@ -86,7 +86,7 @@ public abstract class Carte extends JComponent{
 	}
 
 	protected void paintComponent(Graphics2D g){
-		super.paintComponent(g);
+		super.paint((Graphics2D)g);
 		if(this.estCachee() == true){
 			this.paintVerso(g);
 		}else{
@@ -97,13 +97,13 @@ public abstract class Carte extends JComponent{
 
 	}
 
-	public void paint(Graphics g){
+	/*public void paint(Graphics g){
 		if(this.estCachee() == true){
 			this.paintVerso((Graphics2D) g);
 		}else{
 			this.paintRecto((Graphics2D) g);
 		}
-	}
+	}*/
 
 
 	public abstract Object duplique();

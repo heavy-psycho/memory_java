@@ -14,30 +14,41 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 
 	private static final long serialVersionUID = 5191665466430373194L;
 
-	JFrame myFrame= new JFrame();
+
 	private Carte[] tabCartes;
 	private Carte[] tabCarteNonTrouve;
 	private int nbCarteRetourne=0;
-	Timer b = new Timer(1000, this);	
+	private boolean[] carteRetourne;
+	private Timer timerMauvaisePaire;
+	private Timer timerAffichage;
 	public int[] i;
 	public int compteur = 0;
-	
+
 
 	// constructeur de PanneauDeCartes
 	public PanneauDeCartes(int nRangees, int nColonnes, Carte[] cartes,int delaiAffichageInitial, int delaiAffichageMauvaisePaire){
 		GridLayout layout = new GridLayout(nRangees,nColonnes);
 		layout.setHgap(10);
 		layout.setVgap(10);
-		myFrame.setLayout(layout);
+		
+		//myFrame.setLayout(layout);
+		JFrame myFrame= new JFrame();
+		JPanel hey=new JPanel();
+		hey.setLayout(layout);
+		
 		myFrame.setTitle("JEUDECARTES");
+		
+		
 
-
+		timerMauvaisePaire=new Timer(delaiAffichageMauvaisePaire,this);
+		timerAffichage=new Timer(delaiAffichageInitial,this);
+		
 		tabCartes=cartes;
 		tabCarteNonTrouve = new Carte[tabCartes.length];
 		for(int i = 0; i<tabCartes.length;i++){
 			tabCarteNonTrouve[i]=tabCartes[i];
 		}
-		
+
 		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
 		int width = gd.getDisplayMode().getWidth();
 		int height = gd.getDisplayMode().getHeight();
@@ -46,14 +57,16 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 
 
 		for(int i=0;i<cartes.length;i++){
-			myFrame.add(cartes[i]);
+			//myFrame.add(cartes[i]);
+			hey.add(cartes[i]);
 			cartes[i].addMouseListener(this);
 		}
-		
+
 
 
 
 		System.out.println(nbCarteRetourne());
+		myFrame.add(hey);
 		myFrame.setVisible(true);
 		myFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
@@ -81,10 +94,13 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 					break;
 				}
 			}
-			
+
 		}
 		return i;
 	}
+
+	
+	
 	private Carte[] EnlevePaireTrouvee(){// AREVOIR
 		int u = 0;
 		Carte[] interm = new Carte[tabCarteNonTrouve.length-2];
@@ -111,9 +127,9 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 		}
 		return tabCarteNonTrouve;
 	}
-	
+
 	/*private boolean[] indice(){
-		
+
 		for(int i=0;i<tabCartes.length;i++){
 			if(tabCartes[i].estMontree()==true){
 				c[i]=true;
@@ -126,34 +142,37 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		Carte a = (Carte)e.getSource();
+		if(a.estCachee()){
 			a.montre();//Montre la carte
-		if(nbCarteRetourne()%2==0){// Si le nombre de cartes retournée est paire
-			indiceCarteRetourne();//On cherche les indices des deux dernières cartes retournées !!AFIXER!! NE MARCHE PAS
-			System.out.println(i[0]+"   "+i[1]);//test
-			//b.start();
-			//reiniNbCarteRetourne();
-			if(tabCartes[i[1]].equals(tabCartes[i[0]])){//si les deux cartes sont pareilles
-				System.out.println("Paire trouvée !");// on a trouvé la paire
-				reiniNbCarteRetourne();//on réinitialise le nombre de cartes retournées
-				//EnlevePaireTrouvee();//AFIXER/AREVOIR
-				compteur++;// on incrémente le compteur
+			if(nbCarteRetourne()%2==0){// Si le nombre de cartes retournée est paire
+				indiceCarteRetourne();//On cherche les indices des deux dernières cartes retournées !!AFIXER!! NE MARCHE PAS
+				System.out.println(i[0]+"   "+i[1]);//test
+				//b.start();
+				//reiniNbCarteRetourne();
+				if(tabCartes[i[1]].equals(tabCartes[i[0]])){//si les deux cartes sont pareilles
+					System.out.println("Paire trouvée !");// on a trouvé la paire
+					reiniNbCarteRetourne();//on réinitialise le nombre de cartes retournées
+					//EnlevePaireTrouvee();//AFIXER/AREVOIR
+					compteur++;// on incrémente le compteur
+				}
+				else{
+					System.out.println("Pas la bonne paire !");//sinon, les deux cartes sont différentes
+					timerMauvaisePaire.start();// on met le timer en route, voir actionPerformed
+
+					reiniNbCarteRetourne();// on réinitialise le nombre de cartes retournées
+					e.consume();
+				}
+
 			}
 			else{
-				System.out.println("Pas la bonne paire !");//sinon, les deux cartes sont différentes
-				b.start();// on met le timer en route, voir actionPerformed
-				reiniNbCarteRetourne();// on réinitialise le nombre de cartes retournées
+				reiniNbCarteRetourne();
 			}
-			
-		}
-		else{
-			reiniNbCarteRetourne();
-		}
-		if(compteur==tabCartes.length/2){//si le compteur est égal au nombre de paire (on a trouvé toutes les paires)
-			System.out.println("Vous avez trouvé les "+compteur+" paires !");
-			System.out.println("Vous avez gagné !");
-		}
+			if(compteur==tabCartes.length/2){//si le compteur est égal au nombre de paire (on a trouvé toutes les paires)
+				System.out.println("Vous avez trouvé les "+compteur+" paires !");
+				System.out.println("Vous avez gagné !");
+			}
 
-
+		}
 	}
 
 	@Override
@@ -180,19 +199,43 @@ public class PanneauDeCartes extends JPanel implements MouseListener, ActionList
 
 	}
 	public void actionPerformed(ActionEvent  e) {// le timer va, après 1000ms cacher les deux dernières cartes retournées
-		tabCartes[i[1]].cache();
+		Timer a =(Timer)e.getSource();
+		a.start();
+		
+		/*tabCartes[i[1]].cache();
 		tabCartes[i[0]].cache();
-		/*for(int i=0; i<tabCartes.length; i++){
+		for(int i=0; i<tabCartes.length; i++){
 			if(tabCartes[i].estCachee() == false){
 				tabCartes[i].cache();
 			}
 		}*/
-		b.stop();
+		
 	}
 
-	
 
-	
+
+	ActionListener taskPerformer = new ActionListener() {
+	       public void actionPerformed(ActionEvent evt) {
+	     tabCartes[i[1]].cache();
+	   tabCartes[i[0]].cache();
+	   /*for(int i=0; i<tabCartes.length; i++){
+	    if(tabCartes[i].estCachee() == false){
+	     tabCartes[i].cache();
+	    }
+	   }*/
+	   b.stop();
+	       }
+	   };
+	   ActionListener taskPerformer2 = new ActionListener() {
+	       public void actionPerformed(ActionEvent evt) {
+	        for(int i= 0; i<tabCartes.length; i++){
+	         tabCartes[i].cache();
+	        }
+	       }
+	   };
+	   
+	 Timer b = new Timer(1000, taskPerformer);
+	 Timer c = new Timer(1000, taskPerformer2);
 
 
 
